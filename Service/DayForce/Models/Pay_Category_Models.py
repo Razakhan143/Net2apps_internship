@@ -1,0 +1,36 @@
+class BaseModel:
+    """this is the base model class for the pay category model class."""
+    item_id=''
+    pay_category_id=''
+    processing_status=''
+    object_name=''
+    object_description=''
+    pay_category_group=''
+    multiplier_rate=''
+    category=''
+    show_hours=''
+    show_amount=''
+    is_irregular_cost=''
+    sort_order=''
+    code_name=''
+    reference_code=''
+    reference_code_2=''
+
+
+class Pay_Category_Model(BaseModel):
+    """this is the pay category model class which inherits from the base model class."""
+    item_id=''
+    pay_category_id=''
+    processing_status=''
+    object_name=''
+    object_description=''
+    pay_category_group=''
+    multiplier_rate=''
+    category=''
+    show_hours=''
+    show_amount=''
+    is_irregular_cost=''
+    sort_order=''
+    code_name=''
+    reference_code=''
+    reference_code_2=''

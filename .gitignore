@@ -1,0 +1,9 @@
+.vscode
+\__pycache__
+\cred.json
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
