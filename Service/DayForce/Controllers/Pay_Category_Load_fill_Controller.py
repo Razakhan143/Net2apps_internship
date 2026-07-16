@@ -8,17 +8,14 @@ load_dotenv()
 class Pay_Category_fill_controller:
     """this class is responsible for filling the pay category data into the Google Sheet."""
     # inittialize the GspreadSheetHelper and get the worksheet
-    GSH=GspreadSheetHelper()
-    worksheet = GSH.getsheet(os.environ['SHEET_NAME'])
+
 
     def pay_category_fill_controller(self, data):
         """this method fills the pay category data into the Google Sheet."""
+        GSH=GspreadSheetHelper()
 
-        # get the start and end row of the worksheet and clear the existing data
-        start_row, end = self.GSH.start_end_row(self.worksheet)
-        _, _, white = self.GSH.colors_r_g_b()
-        self.worksheet.batch_clear([f"A{start_row}:N{end}"])
-        format_cell_ranges(self.worksheet, [(f"A{start_row}:N{end}", white)])
+        # get Clearing the sheet before filling the data into the worksheet
+        GSH.clear_sheet('A', 'N')
 
         # create a list of rows from web models to be filled into the worksheet
         rows = []
@@ -41,7 +38,7 @@ class Pay_Category_fill_controller:
             ])
 
         # update the worksheet with the new data
-        self.GSH.update_sheet(self.worksheet,'A','N',rows)
+        GSH.update_sheet('A', 'N', rows)
         print("Pay Category Fill Completed")
             
 
@@ -49,15 +46,13 @@ class Pay_Category_fill_controller:
 
 class Pay_Category_loader_controller:
     """this class is responsible for loading the pay category data from the Google Sheet."""
-    GSH=GspreadSheetHelper()
-    worksheet = GSH.getsheet(os.environ['SHEET_NAME'])
 
     def pay_category_loader_controller(self):
         """this method loads the pay category data from the Google Sheet."""
+        GSH=GspreadSheetHelper()
 
         # get the start and end row of the worksheet and get the data from the worksheet
-        start_row, end = self.GSH.start_end_row(self.worksheet)
-        data = self.worksheet.get(f"A{start_row}:N{end}",pad_values=True)
+        data = GSH.get_sheet_data('A', 'N', Pad_values=True)
 
         # create a list of pay category models from the data loaded from the worksheet and return it
         pay_category_models = []

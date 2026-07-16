@@ -18,7 +18,6 @@ class Pay_Category_Automate:
         wrapper = handywrapper(driver)
         helper = Pay_Category_Common_Helper()
         GSH=GspreadSheetHelper()
-        worksheet = GSH.getsheet(os.environ['SHEET_NAME'])
 
         # get the colors for formatting the cells in the Google Sheet
         client_id=0
@@ -44,18 +43,21 @@ class Pay_Category_Automate:
             else:
                 # if the object name in the web models is not same as the object name in the sheet models, create a new pay category data and update it accordingly
                 print("No pay category found for object so, creating new one:", sheet_models[i].object_name)
+                helper.create_pay_category(sheet_models[i], groups, driver)
                 client_id+=1
-                similarity=False
+                similarity=True
 
             if not similarity:
                 # if the all pay category data is not similar, update the pay category data in the Dayforce application and update the status in the Google Sheet
                 print("Automating for Pay Category Object Name:", sheet_models[i].object_name)
-                helper.update_pay_category(sheet_models[i], groups, driver, len(web_models) + client_id)
+                helper.update_pay_category(sheet_models[i], groups, driver, web_models[i].pay_category_id)
 
         # update the status of the pay category data in the Google Sheet
-        GSH.update_sheet(worksheet,'B','B',status*(len(web_models) + client_id))
+        GSH.update_sheet('B','B', status*(len(web_models) + client_id))
         time.sleep(5)
-        wrapper.click_element('XPATH', "//span[@class='dijit dijitReset dijitInline dijitButton' and @widgetid = 'UI_Mixins__TooltipMixin_5']")
+        wrapper.click_element('XPATH', "//span[contains(text(),'Refresh')]")
+
+        print("Automation Completed for Pay Category")
 
 
 

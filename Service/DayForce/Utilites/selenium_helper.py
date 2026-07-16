@@ -46,10 +46,10 @@ class handywrapper:
                 return " "
         
 
-        def click_element(self, locator_type, locator_value):
+        def click_element(self, locator_type, locator_value,timeout=20):
             """this method clicks a web element based on the locator type and value."""
             try:
-                if self.wait_for_element_clickable(locator_type, locator_value):
+                if self.wait_for_element_clickable(locator_type, locator_value,timeout):
                     element = self.find_element(locator_type, locator_value)
                     element.click()
                 else:
@@ -105,7 +105,7 @@ class handywrapper:
             
 
             # add explicit wait for element to be clickable
-        def wait_for_element_clickable(self, locator_type, locator_value, timeout=50):
+        def wait_for_element_clickable(self, locator_type, locator_value, timeout):
             """this method waits for a web element to be clickable based on the locator type and value."""
             try:
                 locator = self.create_locator(locator_type, locator_value)

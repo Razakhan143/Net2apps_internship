@@ -14,7 +14,6 @@ class Pay_Category_Validation:
 
         # get the pay category data from the Google Sheet and compare it with the web models
         GSH=GspreadSheetHelper()
-        worksheet = GSH.getsheet(os.environ['SHEET_NAME'])
         loader_controller = Pay_Category_loader_controller()
         sheet_models = loader_controller.pay_category_loader_controller()
         
@@ -84,10 +83,10 @@ class Pay_Category_Validation:
         # split the list of cell ranges and colors into two halves and format the cells in the Google Sheet so limit not exceed
         length = len(formate_list)//2
         print("Validating first half")
-        format_cell_ranges(worksheet,formate_list[:length])
+        GSH.batch_formate_sheet(formate_list[:length])
         print("Validating second half")
-        format_cell_ranges(worksheet,formate_list[length:])
-        # format_cell_ranges(worksheet,formate_list[:100])
+        GSH.batch_formate_sheet(formate_list[length:])
+        # GSH.batch_formate_sheet(formate_list[:100])
         print("Validation Completed")
         
 
