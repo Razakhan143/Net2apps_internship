@@ -13,15 +13,15 @@ if __name__ == "__main__":
 
     #============== Reverse Completed ===================
 
-    #============== Performing the Fill test case for Pay Category ==============
-    # pay_category_fill = Pay_Category_fill_controller()
-    # pay_category_fill.pay_category_fill_controller(web_models)
+    # ============== Performing the Fill test case for Pay Category ==============
+    pay_category_fill = Pay_Category_fill_controller()
+    pay_category_fill.pay_category_fill_controller(web_models)
 
     #============== Fill Completed ===================
 
     # #============== Performing the Validation test case for Pay Category ==============
-    pay_category_validation = Pay_Category_Validation()
-    pay_category_validation.validate_pay_category(web_models)
+    # pay_category_validation = Pay_Category_Validation()
+    # pay_category_validation.validate_pay_category(web_models)
 
     #============== Validation Completed ===================
 
