@@ -21,17 +21,18 @@ class Pay_Category_Get_Post:
                 cookie["name"],
                 cookie["value"]
             )
-        csrf = driver.execute_script("""
-        return window.Dayforce?.AppSettingsData?.csrfRequestToken;
-        """)
-        return session, csrf
+
+        return session
     
 
     def update_pay_category(self, driver,payload):
         """this method updates the pay category data in the Dayforce application using the API."""
         
-        session, csrf = self.get_session_data(driver)
+        session = self.get_session_data(driver)
         scrub_id = self.get_scrub_id(driver)
+        csrf = driver.execute_script("""
+        return window.Dayforce?.AppSettingsData?.csrfRequestToken;
+        """)
 
         # create the url and headers for the API call to update the pay category data in the Dayforce application
         url = f"https://usstage261.dayforcehcm.com/MyDayforce/u/{scrub_id}/WFMAdmin/PayCategory/PersistPayCategory"
@@ -60,9 +61,7 @@ class Pay_Category_Get_Post:
         """this method posts the pay category data to the Dayforce application using the API."""
 
         # create a requests session and set the cookies from the driver to the session, then post the pay category data to the Dayforce application using the API and return the response as a json object.
-        session = requests.Session()
-        for cookie in driver.get_cookies():
-            session.cookies.set(cookie["name"], cookie["value"])
+        session = self.get_session_data(driver)
         response = session.post(api_url)
         if response.status_code == 200:
             return response.json()

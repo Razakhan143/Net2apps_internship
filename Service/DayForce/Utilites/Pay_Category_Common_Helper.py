@@ -32,7 +32,7 @@ class Pay_Category_Common_Helper:
         "CurrentClientId": None,
         "CurrentClientName": None,
         "NumberOfChild": None,
-        "ClientEntityId": "89aa80fb-335d-43a2-87d6-f951531ef970",
+        "ClientEntityId": str(uuid.uuid4()),
         "EntityState": 2,
         "LastModifiedTimestamp": None,
         "OriginalValues": None,
