@@ -3,7 +3,7 @@ from Utilites.gspread_helper import GspreadSheetHelper
 from Utilites.selenium_helper import handywrapper
 from Utilites.rating_scale_operation_helper import rating_scale_operation_helpers
 from Controller.controllers_rating_scale import rating_scale_loader_controller
-from TestCases.reverse_rating_scale import rating_scale_reverse
+from TestCases.Rating_Scale_Reverse import rating_scale_reverse
 class rating_scale_automation:
     """class to automate the process of updating the data in the website with the data in the google sheet"""
 

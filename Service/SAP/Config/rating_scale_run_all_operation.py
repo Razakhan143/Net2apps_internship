@@ -1,7 +1,7 @@
 import time
 from TestCases.reverse_rating_scale import rating_scale_reverse
-from TestCases.validate_rating_scale import rating_scale_validation
-from TestCases.automation_rating_scale import rating_scale_automation
+from Service.SAP.TestCases.Rating_Scale_Validate import rating_scale_validation
+from Service.SAP.TestCases.Rating_Scale_Automate import rating_scale_automation
 from Controller.controllers_rating_scale import rating_scale_fill_sheet_controller
 
 
