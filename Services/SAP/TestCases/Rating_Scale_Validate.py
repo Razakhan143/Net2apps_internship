@@ -1,8 +1,8 @@
 import time
 from Utilites.gspread_helper import GspreadSheetHelper
-from Service.SAP.TestCases.Rating_Scale_Reverse import rating_scale_reverse
+from TestCases.Rating_Scale_Reverse import rating_scale_reverse
 from Controller.controllers_rating_scale import rating_scale_loader_controller
-from Utilites.rating_scale_operation_helper import rating_scale_operation_helpers
+from Utilites.rating_scale_helper import rating_scale_operation_helpers
 
 
 class rating_scale_validation:
