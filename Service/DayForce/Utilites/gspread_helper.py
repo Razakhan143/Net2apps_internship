@@ -8,9 +8,9 @@ load_dotenv()
 class GspreadSheetHelper:
 
     credential = gspread.service_account(filename='Utilites\\cred.json')
-    file_name = os.environ['FILE_NAME']
+    file_name = os.environ['DAYFORCE_FILE_NAME']
     sheet = credential.open(file_name)
-    worksheet = sheet.worksheet(os.environ['SHEET_NAME'])
+    worksheet = sheet.worksheet(os.environ['DAYFORCE_SHEET_NAME'])
 
     def getsheet(self, sheet_name):
         """Function to get the worksheet object from the Google Sheet"""

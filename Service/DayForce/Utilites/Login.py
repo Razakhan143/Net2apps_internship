@@ -10,10 +10,10 @@ class login_dayforce:
         """this method logs into the Dayforce application and returns the driver object."""
 
         # get the login credentials from the environment variables
-        company_id = os.environ['COMPANY_ID']
-        username = os.environ['USER_NAME']
-        password = os.environ['PASSWORD']
-        host_address = os.environ['HOST_ADDRESS']
+        company_id = os.environ['DAYFORCE_COMPANY_ID']
+        username = os.environ['DAYFORCE_USER_NAME']
+        password = os.environ['DAYFORCE_PASSWORD']
+        host_address = os.environ['DAYFORCE_HOST_ADDRESS']
         driver=webdriver.Chrome()
 
         # maximize the browser window and navigate to the Dayforce login page
