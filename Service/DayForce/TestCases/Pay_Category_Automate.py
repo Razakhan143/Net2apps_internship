@@ -1,10 +1,9 @@
 import time
-import os
-from Service.DayForce.Utilites.selenium_helper import handywrapper
-from Service.DayForce.Utilites.gspread_helper import GspreadSheetHelper
-from Service.DayForce.TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
-from Service.DayForce.Utilites.Pay_Category_Common_Helper import Pay_Category_Common_Helper
-from Service.DayForce.Controllers.Pay_Category_Load_fill_Controller import Pay_Category_loader_controller
+from Utilites.selenium_helper import handywrapper
+from Utilites.gspread_helper import GspreadSheetHelper
+from TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
+from Utilites.Pay_Category_Common_Helper import Pay_Category_Common_Helper
+from Controllers.Pay_Category_Load_fill_Controller import Pay_Category_loader_controller
 
 class Pay_Category_Automate:
     """this class is responsible for automating the pay category data into the Dayforce application."""

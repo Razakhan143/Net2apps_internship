@@ -1,10 +1,8 @@
-import os
-from gspread_formatting import format_cell_ranges
 # importing the required modules for the test cases
-from Service.DayForce.Utilites.gspread_helper import GspreadSheetHelper
-from Service.DayForce.TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
-from Service.DayForce.Utilites.Pay_Category_Common_Helper import Pay_Category_Common_Helper
-from Service.DayForce.Controllers.Pay_Category_Load_fill_Controller import Pay_Category_loader_controller
+from Utilites.gspread_helper import GspreadSheetHelper
+from TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
+from Utilites.Pay_Category_Common_Helper import Pay_Category_Common_Helper
+from Controllers.Pay_Category_Load_fill_Controller import Pay_Category_loader_controller
 
 class Pay_Category_Validation:
     """this class is responsible for validating the pay category data from the Dayforce application."""

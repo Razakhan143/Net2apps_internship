@@ -1,8 +1,8 @@
 # importing the required modules for the test cases
-from Service.DayForce.TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
-from Service.DayForce.TestCases.Pay_Category_Validate import  Pay_Category_Validation
-from Service.DayForce.TestCases.Pay_Category_Automate import  Pay_Category_Automate
-from Service.DayForce.Controllers.Pay_Category_Load_fill_Controller import  Pay_Category_fill_controller
+from TestCases.Pay_Category_Reverse import  Pay_Category_Reverse
+from TestCases.Pay_Category_Validate import  Pay_Category_Validation
+from TestCases.Pay_Category_Automate import  Pay_Category_Automate
+from Controllers.Pay_Category_Load_fill_Controller import  Pay_Category_fill_controller
 
 
 if __name__ == "__main__":

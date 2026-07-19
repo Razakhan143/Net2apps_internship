@@ -1,4 +1,4 @@
-from Service.DayForce.Utilites.Get_and_Post.Pay_Category_Get_Post import Pay_Category_Get_Post
+from Utilites.Get_and_Post.Pay_Category_Get_Post import Pay_Category_Get_Post
 import uuid
 class Pay_Category_Common_Helper:
     """this class is responsible for providing common helper methods for pay category validation and update."""

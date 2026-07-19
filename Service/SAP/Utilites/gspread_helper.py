@@ -8,9 +8,9 @@ load_dotenv()
 class GspreadSheetHelper:
 
     credential = gspread.service_account(filename='Utilites\\cred.json')
-    file_name = os.environ['FILE_NAME']
+    file_name = os.environ['SAP_FILE_NAME']
     sheet = credential.open(file_name)
-    worksheet = sheet.worksheet(os.environ['SHEET_NAME'])
+    worksheet = sheet.worksheet(os.environ['SAP_SHEET_NAME'])
 
     def getsheet(self, sheet_name):
         """Function to get the worksheet object from the Google Sheet"""
@@ -25,7 +25,7 @@ class GspreadSheetHelper:
         """Function to get the starting and ending row of a column in the worksheet"""
         try:
             start=4
-            end=len(self.worksheet.col_values(7))
+            end=len(self.worksheet.col_values(9))
             if end==1:
                 end = 4
             return start,end

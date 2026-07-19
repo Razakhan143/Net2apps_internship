@@ -1,8 +1,8 @@
 import time
-from Service.DayForce.Models.Pay_Category_Models import Pay_Category_Model
-from Service.DayForce.Utilites.Get_and_Post.Pay_Category_Get_Post import Pay_Category_Get_Post
-from Service.DayForce.Utilites.Login import login_dayforce
-from Service.DayForce.Controllers.Pay_Category_Load_fill_Controller import  Pay_Category_fill_controller
+from Models.Pay_Category_Models import Pay_Category_Model
+from Utilites.Get_and_Post.Pay_Category_Get_Post import Pay_Category_Get_Post
+from Utilites.Login import login_dayforce
+from Controllers.Pay_Category_Load_fill_Controller import  Pay_Category_fill_controller
 
 class Pay_Category_Reverse:
     """this class is responsible for reversing the pay category data from the Dayforce application."""

@@ -1,9 +1,5 @@
-import os
-from dotenv import load_dotenv
-from gspread_formatting import format_cell_ranges
-from Service.DayForce.Utilites.gspread_helper import GspreadSheetHelper
-from Service.DayForce.Models.Pay_Category_Models import Pay_Category_Model
-load_dotenv()
+from Utilites.gspread_helper import GspreadSheetHelper
+from Models.Pay_Category_Models import Pay_Category_Model
 
 class Pay_Category_fill_controller:
     """this class is responsible for filling the pay category data into the Google Sheet."""

@@ -2,7 +2,7 @@ import os
 import time
 from selenium import webdriver
 from dotenv import load_dotenv
-from Service.DayForce.Utilites.selenium_helper import handywrapper
+from Utilites.selenium_helper import handywrapper
 load_dotenv()
 class login_dayforce:
     """this class is responsible for logging into the Dayforce application."""
