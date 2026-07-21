@@ -34,7 +34,7 @@ class Pay_Category_Reverse:
             pay_cat_model=Pay_Category_Model()
             pay_cat_model.item_id = i+1
             pay_cat_model.pay_category_id = pay_category['PayCategoryId']
-            pay_cat_model.processing_status = 'Pending'
+            pay_cat_model.processing_status = 'Processed'
             pay_cat_model.object_name=pay_category['ShortName']
             pay_cat_model.object_description=pay_category['LongName']
             pay_cat_model.pay_category_group=group_id_to_name.get(pay_category['PayCategoryGroupId'], '')
@@ -47,6 +47,7 @@ class Pay_Category_Reverse:
             pay_cat_model.code_name=pay_category['CodeName']
             pay_cat_model.reference_code=pay_category['XRefCode']
             pay_cat_model.reference_code_2=pay_category['XRefCode2']
+            pay_cat_model.client_entity_id=pay_category['ClientEntityId']
             data_list.append(pay_cat_model)
         
         print("Pay Category Reverse Completed")

@@ -23,44 +23,53 @@ class Pay_Category_Validation:
         formate_list=[]
         for i in range(len(sheet_models)):
             id = int(sheet_models[i].item_id)-1
-
+            print(id)
+            # Search for the corresponding web model based on pay_category_id
+            web_model = next(
+                        (model for model in web_models
+                        if str(model.pay_category_id) == sheet_models[i].pay_category_id),
+                        None)
+            print(f"Validating Pay Category ID: {sheet_models[i].pay_category_id}, with Web Model id:{web_model.pay_category_id if web_model else 'Not Found'} and the object is {web_model.object_name if web_model else 'Not Found'}")
             # if the object name is matching then compare the other fields and format the cells in the Google Sheet
-            if id < len(web_models) and web_models[id].object_name == sheet_models[i].object_name :
-                color= green
+            if id < len(web_models) and web_model is not None and web_model.object_name == sheet_models[i].object_name:
+                color= green if web_model.object_name == sheet_models[i].object_name else red
                 formate_list.append((f"C{id+4}", color))
 
-                color = green if str(web_models[id].object_description) == helper.maps(sheet_models[i].object_description) else red
+                color = green if str(web_model.object_description) == helper.maps(sheet_models[i].object_description) else red
                 formate_list.append((f"D{id+4}", color))
                 
-                color = green if str(web_models[id].pay_category_group) == sheet_models[i].pay_category_group else red
+                color = green if str(web_model.pay_category_group) == sheet_models[i].pay_category_group else red
                 formate_list.append((f"E{id+4}", color))
 
-                color = green if web_models[id].multiplier_rate == float(sheet_models[i].multiplier_rate) else red
+                color = green if web_model.multiplier_rate == float(sheet_models[i].multiplier_rate) else red
                 formate_list.append((f"F{id+4}", color))
 
-                color = green if web_models[id].category == helper.maps(sheet_models[i].category) else red
+                color = green if web_model.category == helper.maps(sheet_models[i].category) else red
                 formate_list.append((f"G{id+4}", color))
 
-                color = green if str(web_models[id].show_hours) == helper.maps(sheet_models[i].show_hours.capitalize()) else red
+                color = green if str(web_model.show_hours) == helper.maps(sheet_models[i].show_hours.capitalize()) else red
                 formate_list.append((f"H{id+4}", color))
 
-                color = green if str(web_models[id].show_amount) == helper.maps(sheet_models[i].show_amount.capitalize()) else red
+                color = green if str(web_model.show_amount) == helper.maps(sheet_models[i].show_amount.capitalize()) else red
                 formate_list.append((f"I{id+4}", color))
 
-                color = green if str(web_models[id].is_irregular_cost) == helper.maps(sheet_models[i].is_irregular_cost.capitalize()) else red
+                color = green if str(web_model.is_irregular_cost) == helper.maps(sheet_models[i].is_irregular_cost.capitalize()) else red
                 formate_list.append((f"J{id+4}", color))
 
-                color = green if str(web_models[id].sort_order) == helper.maps(sheet_models[i].sort_order) else red
+                color = green if str(web_model.sort_order) == helper.maps(sheet_models[i].sort_order) else red
                 formate_list.append((f"K{id+4}", color))
 
-                color = green if str(web_models[id].code_name) == helper.maps(sheet_models[i].code_name) else red
+                color = green if str(web_model.code_name) == helper.maps(sheet_models[i].code_name) else red
                 formate_list.append((f"L{id+4}", color))
 
-                color = green if str(web_models[id].reference_code) == helper.maps(sheet_models[i].reference_code) else red
+                color = green if str(web_model.reference_code) == helper.maps(sheet_models[i].reference_code) else red
                 formate_list.append((f"M{id+4}", color))
 
-                color = green if str(web_models[id].reference_code_2) == helper.maps(sheet_models[i].reference_code_2) else red
+                color = green if str(web_model.reference_code_2) == helper.maps(sheet_models[i].reference_code_2) else red
                 formate_list.append((f"N{id+4}", color))
+                
+                formate_list.append((f"O{id+4}", green))
+
             else:
                 # if the object name is not matching then mark all the cells in that row as red as the object not exist
                 color = red
@@ -76,15 +85,10 @@ class Pay_Category_Validation:
                 formate_list.append((f"L{id+4}", color))
                 formate_list.append((f"M{id+4}", color))
                 formate_list.append((f"N{id+4}", color))
+                formate_list.append((f"O{id+4}", color))
 
-
-        # split the list of cell ranges and colors into two halves and format the cells in the Google Sheet so limit not exceed
-        length = len(formate_list)//2
-        print("Validating first half")
-        GSH.batch_formate_sheet(formate_list[:length])
-        print("Validating second half")
-        GSH.batch_formate_sheet(formate_list[length:])
-        # GSH.batch_formate_sheet(formate_list[:100])
+        GSH.batch_formate_sheet(formate_list)
+        GSH.update_sheet('B','B', ["Processed"]*(len(web_models)))
         print("Validation Completed")
         
 

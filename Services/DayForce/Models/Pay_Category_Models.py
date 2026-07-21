@@ -34,3 +34,4 @@ class Pay_Category_Model(BaseModel):
     code_name=''
     reference_code=''
     reference_code_2=''
+    client_entity_id=''

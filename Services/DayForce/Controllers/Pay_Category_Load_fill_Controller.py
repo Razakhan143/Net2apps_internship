@@ -11,7 +11,7 @@ class Pay_Category_fill_controller:
         GSH=GspreadSheetHelper()
 
         # get Clearing the sheet before filling the data into the worksheet
-        GSH.clear_sheet('A', 'N')
+        GSH.clear_sheet('A', 'O')
 
         # create a list of rows from web models to be filled into the worksheet
         rows = []
@@ -30,11 +30,12 @@ class Pay_Category_fill_controller:
                 row.sort_order,
                 row.code_name,
                 row.reference_code,
-                row.reference_code_2
+                row.reference_code_2,
+                row.pay_category_id
             ])
 
         # update the worksheet with the new data
-        GSH.update_sheet('A', 'N', rows)
+        GSH.update_sheet('A', 'O', rows)
         print("Pay Category Fill Completed")
             
 
@@ -48,15 +49,13 @@ class Pay_Category_loader_controller:
         GSH=GspreadSheetHelper()
 
         # get the start and end row of the worksheet and get the data from the worksheet
-        data = GSH.get_sheet_data('A', 'N', Pad_values=True)
+        data = GSH.get_sheet_data('A', 'O', Pad_values=True)
 
         # create a list of pay category models from the data loaded from the worksheet and return it
         pay_category_models = []
-        row_count = 0
         for row in data:
             if row[1] == 'Processed':
                 continue
-            row_count += 1
             pay_cat_model=Pay_Category_Model()
             pay_cat_model.item_id=row[0]
             pay_cat_model.object_name=row[2]
@@ -71,7 +70,7 @@ class Pay_Category_loader_controller:
             pay_cat_model.code_name=row[11]
             pay_cat_model.reference_code=row[12]
             pay_cat_model.reference_code_2=row[13]
-            
+            pay_cat_model.pay_category_id=row[14]
             pay_category_models.append(pay_cat_model)
             
         return pay_category_models

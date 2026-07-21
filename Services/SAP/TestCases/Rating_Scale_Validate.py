@@ -27,6 +27,7 @@ class rating_scale_validation:
                 color = self.green if row.rating_scale_name == web_models[index][1].rating_scale_name else self.red
                 formate.append((f"E{i+4}", color))
 
+                print("validating description :", row.rating_scale_description, "with", web_models[index][1].rating_scale_description,"and the are same:", row.rating_scale_description == web_models[index][1].rating_scale_description)
                 color = self.green if row.rating_scale_description == web_models[index][1].rating_scale_description else self.red
                 formate.append((f"F{i+4}", color))
             else:
