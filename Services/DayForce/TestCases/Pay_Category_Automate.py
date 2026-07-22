@@ -25,9 +25,7 @@ class Pay_Category_Automate:
         for i in range(len(sheet_models)):
             id = int(sheet_models[i].item_id)-1
                         # Search for the corresponding web model based on pay_category_id
-            web_model = next(
-                        (model for model in web_models
-                        if str(model.pay_category_id) == sheet_models[i].pay_category_id),
+            web_model = next((model for model in web_models if str(model.pay_category_id) == sheet_models[i].pay_category_id),
                         None)
 
             # check if the object name in the web models is same as the object name in the sheet models and update the pay category data accordingly
@@ -56,9 +54,6 @@ class Pay_Category_Automate:
                 # if the all pay category data is not similar, update the pay category data in the Dayforce application and update the status in the Google Sheet
                 print("Automating for Pay Category Object Name:", sheet_models[i].object_name)
                 helper.update_pay_category(sheet_models[i], groups, driver,"update")
-
-        # update the status of the pay category data in the Google Sheet
-        # GSH.update_sheet('B','B', [status]*(len(web_models) + client_id))
 
         print("Automation Completed for Pay Category")
 
