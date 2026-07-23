@@ -2,7 +2,11 @@ from pathlib import Path
 
 file_init = "Manage_Recruiting_Email_Templates"
 
-files_to_create = {
+# Base directory (current project directory)
+base_dir = Path.cwd()
+
+# Files to create
+files = {
     "Config": [
         f"{file_init}_Run_All.py",
     ],
@@ -10,7 +14,7 @@ files_to_create = {
         f"{file_init}_Models.py",
     ],
     "Controller": [
-        f"{file_init}_Controllers.py",
+        f"{file_init}_Models.py",
     ],
     "TestCases": [
         f"{file_init}_Automate.py",
@@ -19,14 +23,24 @@ files_to_create = {
     ],
 }
 
-for folder, files in files_to_create.items():
-    folder_path = Path(folder)
 
-    for file_name in files:
-        file_path = folder_path / file_name
+def create_python_file(file_path: Path):
+    """Create a Python file with a class matching the filename."""
+    class_name = file_path.stem
 
-        # Create the file only if it doesn't already exist
-        file_path.touch(exist_ok=True)
-        print(f"Created: {file_path}")
+    content = f'''class {class_name}:
+    pass
+'''
+
+    file_path.write_text(content, encoding="utf-8")
+    print(f"Created: {file_path}")
+
+
+for folder, filenames in files.items():
+    folder_path = base_dir / folder
+
+    for filename in filenames:
+        file_path = folder_path / filename
+        create_python_file(file_path)
 
 print("All files created successfully.")
